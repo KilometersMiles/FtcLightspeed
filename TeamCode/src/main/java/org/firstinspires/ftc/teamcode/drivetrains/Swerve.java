@@ -3,14 +3,22 @@ package org.firstinspires.ftc.teamcode.drivetrains;
 public class Swerve extends Drivetrain {
     private double robotWidth = Constants.robotWidth;
     private double robotLength = Constants.robotLength;
+    //4 swerve modules
+    private SwerveModule wheel1;
+    private SwerveModule wheel2;
+    private SwerveModule wheel3;
+    private SwerveModule wheel4;
 
     public Swerve (LinearOpMode opMode) {
         super("Swerve");
         //init hardware
+        wheel1 = new SwerveModule(/*probably hardware thing*/);
+        wheel2 = new SwerveModule(/*probably hardware thing*/);
+        wheel3 = new SwerveModule(/*probably hardware thing*/);
+        wheel4 = new SwerveModule(/*probably hardware thing*/);
     }
 
-    //rename function for coherence
-    public void moveTowardsState(double xVel, double yVel, double hVel) {
+    public void setDrivetrainState(double xVel, double yVel, double hVel) {
         double A = xVel - (hVel * (robotLength / 2));
         double B = xVel + (hVel * (robotLength / 2));
         double C = yVel - (hVel * (robotWidth / 2));
@@ -30,5 +38,9 @@ public class Swerve extends Drivetrain {
         double angle4 = Math.atan2(A,C); //in radians
 
         //apply to each swerve module
+        wheel1.setSpeedAndDirection(speed1, angle1);
+        wheel2.setSpeedAndDirection(speed2, angle2);
+        wheel3.setSpeedAndDirection(speed3, angle3);
+        wheel4.setSpeedAndDirection(speed4, angle4);
     }
 }
